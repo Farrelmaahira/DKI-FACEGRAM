@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,5 +41,9 @@ Route::prefix('v1')->group(function(){
         Route::get('/following', 'getAllFollowing')->middleware('auth:sanctum');
         Route::put('/users/{username}/accept', 'acceptFollower')->middleware('auth:sanctum');
         Route::get('/users/{username}/followers', 'getAllFollower')->middleware('auth:sanctum');
+    });
+
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/users/{username}', 'profile')->middleware('auth:sanctum');
     });
 });

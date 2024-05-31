@@ -29,7 +29,6 @@ class FollowingController extends Controller
             ]);
         }
 
-
         $follow = Follow::query();
         $alreadyFoll = $follow->where([
             'follower_id' => $authUser->id,
@@ -59,7 +58,7 @@ class FollowingController extends Controller
         Follow::create([
             'follower_id' => $authUser->id,
             'following_id' => $user->id,
-            'is_accepted' => false
+            'is_accepted' => true
         ]);
         return response()->json([
             'message' => 'follow success',

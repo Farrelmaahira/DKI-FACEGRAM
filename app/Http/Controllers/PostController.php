@@ -54,7 +54,7 @@ class PostController extends Controller
             return response()->json([
                 'message' => 'Invalid field',
                 'errors' => $vld->messages()
-            ]);
+            ], 422);
         }
         $attachments = $request->file('attachments');
         $post = Post::create([
